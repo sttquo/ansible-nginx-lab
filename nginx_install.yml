@@ -1,0 +1,19 @@
+- name: Установка и настройка nginx
+  hosts: red_os_servers 
+  become: true 
+
+  vars:
+    domain: home.lab 
+
+  tasks:
+    - name: 1. Установить nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+        update_cache: yes 
+
+    - name: 2. Перезапустить и включить nginx в автозагрузку
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes

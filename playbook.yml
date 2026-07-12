@@ -1,0 +1,30 @@
+- name: Выполнение лабораторной работы по Ansible
+  hosts: red_os_servers
+  become: yes
+
+  tasks:
+    - name: 1. Создание нового пользователя
+      ansible.builtin.user:
+        name: labuser
+        comment: "Студент-лаборант"
+        shell: /bin/bash
+        state: present
+        password: "$6$o59abKRg.47rkZ8R$hFtUleqUslQLYti5jDWP7tbMhwvBHHDPUwpoclsw7A2FQAuirP.UBHqqo5PyMRzcjBysTWIbLin9j3PI7e1Je0" #пароль 12345
+
+    - name: 2. Создание целевой папки
+      ansible.builtin.file:
+        path: /opt/lab_folder
+        state: directory
+        mode: '0755'
+        owner: labuser
+        group: labuser
+
+    - name: 3. Создание текстового документа с текстом
+      ansible.builtin.copy:
+        dest: /opt/lab_folder/document.txt
+        content: |
+          Привет! Этот файл, папка и пользователь
+          были созданы автоматически с помощью Ansible плейбука.
+        mode: '0644'
+        owner: labuser
+        group: labuser
