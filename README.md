@@ -38,12 +38,13 @@
 1. Включаем виртуалки в VirtualBox.
 2. Проверяем, что Ansible их видит:
    ```bash
-   ansible red_os_servers -m ping```
+   ansible red_os_servers -m ping
+
 ![Проверка видимости виртуалок](ping.png)
 
 3. Запускаем базовую настройку окружения (создание пользователя и директорий):
    ```bach
-   ansible-playbook setup_env.yml```
+   ansible-playbook setup_env.yml
 
 4. Запускаем установку
 ### Результат работы плейбука
