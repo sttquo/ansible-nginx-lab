@@ -9,7 +9,7 @@
         comment: "Студент-лаборант"
         shell: /bin/bash
         state: present
-        password: "$6$o59abKRg.47rkZ8R$hFtUleqUslQLYti5jDWP7tbMhwvBHHDPUwpoclsw7A2FQAuirP.UBHqqo5PyMRzcjBysTWIbLin9j3PI7e1Je0" #пароль 12345
+        password: "{{ labuser_password }}" # Пароль берется из group_vars
 
     - name: 2. Создание целевой папки
       ansible.builtin.file:
